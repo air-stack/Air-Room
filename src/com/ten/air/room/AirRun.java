@@ -23,11 +23,11 @@ public class AirRun {
         });
     }
 
-    public static void run(){
+    public static void run() {
         air.run();
     }
 
-    public static void addListener(){
+    public static void addListener() {
         AirSensor sensor = new AirSensor();
         air.registerSensor(sensor);
     }
