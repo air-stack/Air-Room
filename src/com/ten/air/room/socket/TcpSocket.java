@@ -4,25 +4,37 @@ import com.ten.air.room.protocol.Protocol;
 
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * TCP Socket
  */
 public class TcpSocket {
+    private static final TcpSocket INSTANCE = new TcpSocket();
 
+    public static TcpSocket getInstance() {
+        return INSTANCE;
+    }
+
+    /**
+     * TODO Socket连接池 {@literal <Id,Socket>}
+     */
+    private ConcurrentHashMap<Integer, Socket> socketConnection;
 
     private TcpSocket() {
+        socketConnection = new ConcurrentHashMap<>();
     }
 
     /**
      * 发送TCP数据包到AIO服务器
      */
-    public static boolean sendTcp(byte[] protocol) {
-        if (Protocol.isValid(protocol)) {
+    public boolean sendTcp(String protocol) {
+        byte[] bytes = toBytes(protocol);
+        if (bytes.length > 0) {
             try {
                 Socket socket = new Socket(Protocol.IP, Protocol.PORT);
                 OutputStream out = socket.getOutputStream();
-                out.write(protocol);
+                out.write(bytes);
                 socket.close();
                 return true;
             } catch (Exception ignored) {
@@ -32,4 +44,22 @@ public class TcpSocket {
         }
         return false;
     }
+
+    /**
+     * 将16进制字符串转换为byte[]
+     */
+    private static byte[] toBytes(String str) {
+        if (str == null || "".equals(str.trim())) {
+            return new byte[0];
+        }
+
+        byte[] bytes = new byte[str.length() / 2];
+        for (int i = 0; i < str.length() / 2; i++) {
+            String subStr = str.substring(i * 2, i * 2 + 2);
+            bytes[i] = (byte) Integer.parseInt(subStr, 16);
+        }
+
+        return bytes;
+    }
+
 }

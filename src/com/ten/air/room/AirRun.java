@@ -1,6 +1,8 @@
 package com.ten.air.room;
 
 import com.ten.air.room.frame.AirFrame;
+import com.ten.air.room.mocker.AirDispatcher;
+import com.ten.air.room.mocker.AirSensor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +30,6 @@ public class AirRun {
     }
 
     public static void addListener() {
-        AirSensor sensor = new AirSensor();
-        air.registerSensor(sensor);
+        air.registerSensor();
     }
 }
