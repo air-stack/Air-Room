@@ -25,7 +25,7 @@ public class Protocol {
     // 数据来源 1
     private static final String SOURCE = "01";
     // 和校验 2
-    private static final String CHECK = "00";
+    private static final String CHECK = "0000";
 
     public static String newProtocol(String imei, AirIndex airIndex) {
         String protocol = ""
