@@ -4,9 +4,6 @@ import javax.swing.*;
 
 /**
  * Frame
- *
- * @author wshten
- * @date 2018/11/12
  */
 public class AirFrame extends JFrame {
 

@@ -1,7 +1,5 @@
 package com.ten.air.room.mocker;
 
-import java.util.concurrent.*;
-
 /**
  * Air Dispatcher For Room and Sensor
  */
@@ -12,13 +10,9 @@ public class AirDispatcher {
 
     private static final int MAX = 8;
 
-    private ScheduledThreadPoolExecutor executor;
-
     public AirDispatcher() {
         airRoom = new AirRoom();
         sensorSize = 0;
-        ThreadFactory threadFactory = Thread::new;
-        executor = new ScheduledThreadPoolExecutor(8, threadFactory);
     }
 
     /**
@@ -40,7 +34,14 @@ public class AirDispatcher {
     public void run() {
         while (true) {
             Runnable r = () -> airRoom.putAirInfo();
-            executor.schedule(r, 3000, TimeUnit.MILLISECONDS);
+            Thread thread = new Thread(r);
+            thread.start();
+
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

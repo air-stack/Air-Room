@@ -10,6 +10,9 @@ public class AirIndex {
     private String co2;
     private String so2;
 
+    /**
+     * 基础数据 :随机数据在BASE上下波动
+     */
     private static final Integer BASE_TEMPERATURE = 25;
     private static final Integer BASE_PM25 = 75;
     private static final Integer BASE_CO2 = 350;

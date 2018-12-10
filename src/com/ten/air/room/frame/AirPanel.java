@@ -1,17 +1,15 @@
 package com.ten.air.room.frame;
 
-import com.ten.air.room.AirRun;
+import com.ten.air.room.AirRoomApplication;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * Content Panel
- *
- * @author wshten
- * @date 2018/11/12
  */
 public class AirPanel extends JPanel {
+
     private JPanel paintPanel;
     private JButton add;
     private JButton run;
@@ -32,7 +30,7 @@ public class AirPanel extends JPanel {
         add.addActionListener(e -> {
             Runnable r = () -> {
                 try {
-                    AirRun.addListener();
+                    AirRoomApplication.addListener();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -47,7 +45,7 @@ public class AirPanel extends JPanel {
         run.addActionListener(e -> {
             Runnable r = () -> {
                 try {
-                    AirRun.run();
+                    AirRoomApplication.run();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -60,7 +58,7 @@ public class AirPanel extends JPanel {
     private void initFrame() {
         // 添加布局
         setLayout(new GridBagLayout());
-        add(paintPanel,setConstraints(0,0,2,4,1,1));
+        add(paintPanel, setConstraints(0, 0, 2, 4, 1, 1));
         add(add, setConstraints(0, 1, 1, 2, 1, 1));
         add(run, setConstraints(2, 1, 1, 2, 1, 1));
     }

@@ -2,18 +2,14 @@ package com.ten.air.room;
 
 import com.ten.air.room.frame.AirFrame;
 import com.ten.air.room.mocker.AirDispatcher;
-import com.ten.air.room.mocker.AirSensor;
 
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Main
- *
- * @author wshten
- * @date 2018/11/12
- */
-public class AirRun {
+public class AirRoomApplication {
+    /**
+     * 
+     */
     private static AirDispatcher air = new AirDispatcher();
 
     public static void main(String[] args) {
