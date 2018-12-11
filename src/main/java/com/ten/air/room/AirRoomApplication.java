@@ -7,9 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AirRoomApplication {
-    /**
-     * 
-     */
     private static AirDispatcher air = new AirDispatcher();
 
     public static void main(String[] args) {
