@@ -33,9 +33,8 @@ public class AirDispatcher {
      */
     public void run() {
         while (true) {
-            Runnable r = () -> airRoom.putAirInfo();
-            Thread thread = new Thread(r);
-            thread.start();
+
+            new Thread(() -> airRoom.putAirInfo()).start();
 
             try {
                 Thread.sleep(3000);

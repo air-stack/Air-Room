@@ -27,32 +27,12 @@ public class AirPanel extends JPanel {
 
     private void setAddButton() {
         add = new JButton("添加传感器");
-        add.addActionListener(e -> {
-            Runnable r = () -> {
-                try {
-                    AirRoomApplication.addListener();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            };
-            Thread thread = new Thread(r);
-            thread.start();
-        });
+        add.addActionListener(event -> new Thread(AirRoomApplication::addListener).start());
     }
 
     private void setRunButton() {
         run = new JButton("运行");
-        run.addActionListener(e -> {
-            Runnable r = () -> {
-                try {
-                    AirRoomApplication.run();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            };
-            Thread thread = new Thread(r);
-            thread.start();
-        });
+        run.addActionListener(event -> new Thread(AirRoomApplication::run).start());
     }
 
     private void initFrame() {
