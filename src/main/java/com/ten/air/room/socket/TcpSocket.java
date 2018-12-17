@@ -2,6 +2,7 @@ package com.ten.air.room.socket;
 
 import com.ten.air.room.protocol.Protocol;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,10 +17,7 @@ public class TcpSocket {
         return INSTANCE;
     }
 
-    /**
-     * TODO Socket连接池 {@literal <Id,Socket>}
-     */
-    private ConcurrentHashMap<Integer, Socket> socketConnection;
+    private ConcurrentHashMap<String, Socket> socketConnection;
 
     private TcpSocket() {
         socketConnection = new ConcurrentHashMap<>();
@@ -28,20 +26,34 @@ public class TcpSocket {
     /**
      * 发送TCP数据包到AIO服务器
      */
-    public boolean sendTcp(String protocol) {
+    public boolean sendTcp(String imei, String protocol) {
+        // 获取Socket连接
+        Socket socket = socketConnection.get(imei);
+        if (socket == null) {
+            try {
+                socket = new Socket(Protocol.IP, Protocol.PORT);
+                socketConnection.put(imei, socket);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("TCP连接建立失败");
+                return false;
+            }
+        }
+
         byte[] bytes = toBytes(protocol);
+
+        // 发送TCP数据
         if (bytes.length > 0) {
             try {
-                Socket socket = new Socket(Protocol.IP, Protocol.PORT);
                 OutputStream out = socket.getOutputStream();
                 out.write(bytes);
-                socket.close();
                 return true;
             } catch (Exception ignored) {
                 System.out.println("TCP数据发送失败");
                 return false;
             }
         }
+
         return false;
     }
 

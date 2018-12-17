@@ -5,16 +5,13 @@ import com.ten.air.room.AirRoomApplication;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Content Panel
- */
-public class AirPanel extends JPanel {
+class AirPanel extends JPanel {
 
     private JPanel paintPanel;
     private JButton add;
     private JButton run;
 
-    public AirPanel() {
+    AirPanel() {
         setPaintPanel();
         setAddButton();
         setRunButton();

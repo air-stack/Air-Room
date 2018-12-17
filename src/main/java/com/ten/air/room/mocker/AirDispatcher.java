@@ -16,7 +16,7 @@ public class AirDispatcher {
     }
 
     /**
-     * Add Sensor
+     * Add Sensor. Max volume is 8.
      */
     public void registerSensor() {
         if (sensorSize < MAX) {

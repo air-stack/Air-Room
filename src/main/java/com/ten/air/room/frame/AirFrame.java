@@ -2,9 +2,6 @@ package com.ten.air.room.frame;
 
 import javax.swing.*;
 
-/**
- * Frame
- */
 public class AirFrame extends JFrame {
 
     public AirFrame() {

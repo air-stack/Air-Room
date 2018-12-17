@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Air-Protocol">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Air-Protocol.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

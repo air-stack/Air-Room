@@ -1,6 +1,6 @@
 package com.ten.air.room.mocker;
 
-import com.ten.air.room.protocol.Protocol;
+import com.ten.air.protocol.ProtocolGenerator;
 import com.ten.air.room.socket.TcpSocket;
 
 import java.util.UUID;
@@ -19,7 +19,7 @@ public class AirSensor implements AirListener {
     private Integer id;
     private String imei;
 
-    public AirSensor() {
+    AirSensor() {
         Integer id = count.addAndGet(1);
         this.id = id;
         this.imei = createImei();
@@ -40,10 +40,10 @@ public class AirSensor implements AirListener {
      * 监听者 :监听指标变化，发送TCP请求到服务器
      */
     @Override
-    public void getAirInfo(AirIndex airIndex) {
-        logger.info("NEW RECORD - ID:" + id + ",INDEX:" + airIndex);
-        String protocol = Protocol.newProtocol(imei, airIndex);
-        boolean result = tcpSocket.sendTcp(protocol);
+    public void getAirInfo() {
+        String protocol = ProtocolGenerator.genMockProtocol(imei);
+        logger.info("NEW RECORD - ID:" + id + "," + protocol);
+        boolean result = tcpSocket.sendTcp(imei,protocol);
         if (result) {
             logger.info("TCP SUCCESS");
         } else {

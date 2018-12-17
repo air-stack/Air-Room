@@ -23,12 +23,8 @@ public class AirRoom implements AirObserver {
      */
     @Override
     public void putAirInfo() {
-        listeners.forEach(listener -> {
-            // 生成模拟指标
-            AirIndex airIndex = AirIndex.getNewAir();
-            // 监听指标
-            listener.getAirInfo(airIndex);
-        });
+        // 监听指标
+        listeners.forEach(AirListener::getAirInfo);
     }
 
 }
