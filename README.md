@@ -4,7 +4,7 @@
 
 ## 技术栈
 
-> Swing + Observer + ThreadPool + Socket
+> Swing + ThreadPool + Socket
 
 ## TCP服务器
 
@@ -12,7 +12,9 @@ Air-Server :[https://github.com/kevinten10/Air-Server]
 
 ## 协议
 
-编码规则遵守Air-Server中的通信协议，采用十六进制编码，包含相关数据信息
+Air-Protocol :[https://github.com/kevinten10/Air-Protocol]
+
+需导入Protocol的本地jar包
 
 ## 运行
 
