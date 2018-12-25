@@ -37,11 +37,11 @@ public class AirSensor implements AirListener {
     }
 
     /**
-     * 监听者 :监听指标变化，发送TCP请求到服务器
+     * FIXME 监听者 :生成模拟数据，发送TCP请求到服务器
      */
     @Override
     public void getAirInfo() {
-        String protocol = ProtocolGenerator.genMockProtocol(imei);
+        String protocol = ProtocolGenerator.genMockProtocol(imei).toUpperCase();
         logger.info("NEW RECORD - ID:" + id + "," + protocol);
         boolean result = tcpSocket.sendTcp(imei,protocol);
         if (result) {
