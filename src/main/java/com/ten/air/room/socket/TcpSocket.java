@@ -5,6 +5,7 @@ import com.ten.air.room.protocol.Protocol;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -40,7 +41,7 @@ public class TcpSocket {
             }
         }
 
-        byte[] bytes = toBytes(protocol);
+        byte[] bytes = (protocol.getBytes(StandardCharsets.UTF_8));
 
         // 发送TCP数据
         if (bytes.length > 0) {

@@ -37,7 +37,8 @@ public class AirDispatcher {
             new Thread(() -> airRoom.putAirInfo()).start();
 
             try {
-                Thread.sleep(3000);
+                // TODO 防止数据量过大，为模拟30天数据，预计数据量3000，则每天100条，时间设为十分钟一条
+                Thread.sleep(600000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
