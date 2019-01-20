@@ -8,7 +8,7 @@
 
 ## TCP服务器
 
-Air-Server :[https://github.com/kevinten10/Air-Server]
+Air-Room :[https://github.com/kevinten10/Air-Room]
 
 ## 协议编码
 
@@ -23,3 +23,32 @@ Air-Protocol :[https://github.com/kevinten10/Air-Protocol]
 ## 异常情况
 
 十六进制协议字符串被编码成byte[]，再SERVER进行解码时，可能由于编解码协议冲突，导致解码后为乱码。
+
+### 快速部署
+
+已将打包好的jar包放在目录下，将Air_Room_jar拷贝到服务器文件下即可，进入目录，输入
+
+    java -jar Air-Room.jar
+    
+即可运行服务
+
+后台运行：nohup java -jar Air-Room.jar > /usr/local/air/room.out  &
+
+### docker部署
+
+    docker run -d --network host -v /usr/local/air/Air_Room_jar/Air-Room.jar:/usr/local/air/Air_Room_jar/Air-Room.jar --name air-back java:8u111 java -jar /usr/local/air/Air_Room_jar/Air-Room.jar
+    
+解析    
+   
+    --network host ：本身与宿主机共用了网络，容器中暴露端口等同于宿主机暴露端口。
+    
+    -d 表示在后台启动
+        
+    -v /usr/local/air/Air_Room_jar/Air-Room.jar:/usr/local/air/Air_Room_jar/Air-Room.jar 表示将宿主主机的jar文件，映射到容器中（分号前为宿主主机的路径，分号后为容器中的路径）
+    
+    --name air-back 表示为该容器取一个全局唯一的名称，这里我取的名称为air-back
+    
+    java:8u111 表示镜像文件的名称和tag
+    
+    java -jar /usr/local/air/Air_Room_jar/Air-Room.jar 表示运行jar包，注意：这里的jar包为容器中的位置，是通过前面的-v属性映射的
+    
