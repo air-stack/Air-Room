@@ -30,7 +30,7 @@ public class TcpSocket {
     public boolean sendTcp(String imei, String protocol) {
         // 获取Socket连接
         Socket socket = socketConnection.get(imei);
-        if (socket == null) {
+        if (socket == null || socket.isClosed()) {
             try {
                 socket = new Socket(Protocol.IP, Protocol.PORT);
                 socketConnection.put(imei, socket);
